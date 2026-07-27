@@ -1,0 +1,93 @@
+# =========================
+# Python
+# =========================
+
+__pycache__/
+*.py[cod]
+*$py.class
+
+*.egg-info/
+.eggs/
+dist/
+build/
+
+# Virtual environments
+venv/
+env/
+.venv/
+
+
+# =========================
+# Jupyter
+# =========================
+
+.ipynb_checkpoints/
+
+
+# =========================
+# Machine Learning Artifacts
+# =========================
+
+# Trained model weights
+*.pt
+*.pth
+*.onnx
+
+# YOLO outputs
+runs/
+results/
+wandb/
+
+
+# =========================
+# Datasets
+# =========================
+
+data/raw/
+data/processed/
+
+# Large image collections
+*.jpg
+*.jpeg
+*.png
+
+# Ignore generated crops
+data/plate_crops/
+
+
+# =========================
+# Databases
+# =========================
+
+*.db
+*.sqlite
+*.sqlite3
+
+# Database dumps (optional)
+*.sql.bak
+
+
+# =========================
+# Colab
+# =========================
+
+.drive/
+content/
+
+
+# =========================
+# OS Files
+# =========================
+
+.DS_Store
+Thumbs.db
+
+
+# =========================
+# Secrets
+# =========================
+
+.env
+*.key
+*.pem
+config/secrets.yaml
