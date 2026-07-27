@@ -1,40 +1,46 @@
 from pathlib import Path
 
-# Project root
-PROJECT_ROOT = Path("/content/drive/MyDrive/LPR_Project")
+
+# ==========================
+# Project Root
+# ==========================
+
+PROJECT_ROOT = Path(
+    "/content/drive/MyDrive/LPR_Project/MD_LicensePlate_Fadiran_ITAI1378"
+)
 
 
-# Existing trained model
+# ==========================
+# Model
+# ==========================
+
 MODEL_PATH = Path(
     "/content/drive/MyDrive/YOLO_BSLN_Training/weights/best.pt"
 )
 
 
-# Existing raw images
+# ==========================
+# Input Data
+# ==========================
+
 RAW_IMAGE_DIR = Path(
     "/content/drive/MyDrive/License_Plate/dataset"
 )
 
 
-# Future outputs from detection stage
-CROPPED_IMAGE_DIR = PROJECT_ROOT / "MD_LicensePlate_Fadiran_ITAI1378" / "data" / "cropped"
+# ==========================
+# Detection Outputs
+# ==========================
 
-DETECTION_METADATA_DIR = PROJECT_ROOT / "MD_LicensePlate_Fadiran_ITAI1378" / "data" / "detections"
-
-
-#####################################################
-
-
-PROJECT_ROOT = Path("/content/drive/MyDrive/LPR_Project")
-
-DATA_DIR = PROJECT_ROOT / "MD_LicensePlate_Fadiran_ITAI1378" / "data"
-
-RAW_DIR = DATA_DIR / "raw"
+DATA_DIR = PROJECT_ROOT / "data"
 
 CROPPED_DIR = DATA_DIR / "cropped"
 
-MODELS_DIR = PROJECT_ROOT / "models"
+DETECTION_METADATA_DIR = DATA_DIR / "detections"
 
-BEST_MODEL = MODELS_DIR / "best.pt"
 
-DATABASE = PROJECT_ROOT / "database" / "lpr.db"
+# ==========================
+# Database
+# ==========================
+
+DATABASE_PATH = PROJECT_ROOT / "database" / "lpr.db"
