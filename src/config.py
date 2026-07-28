@@ -41,7 +41,7 @@ DATABASE_PATH = PROJECT_ROOT / "database" / "lpr.db"
 
 
 # Require high certainty for the raw image to bypass preprocessing
-OCR_CONF_PRIMARY = 0.75 
+OCR_CONF_PRIMARY = 0.90 
 
 # Require decent certainty for the final preprocessed attempt
 OCR_CONF_FALLBACK = 0.40
