@@ -9,7 +9,7 @@ RUN_DIR = Path(
     "/content/drive/MyDrive/LPR_Project/MD_LicensePlate_Fadiran_ITAI1378/runs/detect/predict/crops/License_Plate"
 )
 
-
+INCOMING_IMAGE_DIR = "/content/drive/MyDrive/LPR_Inbox/incoming"
 
 # Test regression images
 TEST_IMAGE_DIR = PROJECT_ROOT / "data" / "test"
