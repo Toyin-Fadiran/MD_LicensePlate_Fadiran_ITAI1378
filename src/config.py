@@ -5,6 +5,10 @@ PROJECT_ROOT = Path(
     "/content/drive/MyDrive/LPR_Project/MD_LicensePlate_Fadiran_ITAI1378"
 )
 
+RUN_DIR = Path(
+    "/content/drive/MyDrive/LPR_Project/MD_LicensePlate_Fadiran_ITAI1378/runs/detect/predict/crops/License_Plate"
+)
+
 
 # Demo ingestion folder
 INCOMING_IMAGE_DIR = Path(
