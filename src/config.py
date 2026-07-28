@@ -39,11 +39,12 @@ DATABASE_PATH = PROJECT_ROOT / "database" / "lpr.db"
 # OCR SETTINGS
 # ==========================================
 
-# Minimum confidence required for the fast-path raw image (Pass 1)
-OCR_CONF_PRIMARY = 0.60 
 
-# Minimum confidence required for the sharpened fallback image (Pass 2)
-OCR_CONF_FALLBACK = 0.25
+# Require high certainty for the raw image to bypass preprocessing
+OCR_CONF_PRIMARY = 0.75 
+
+# Require decent certainty for the final preprocessed attempt
+OCR_CONF_FALLBACK = 0.40
 
 # Standard US plates are usually 5-7 characters, rarely 4 or 8.
 MIN_PLATE_LENGTH = 4
