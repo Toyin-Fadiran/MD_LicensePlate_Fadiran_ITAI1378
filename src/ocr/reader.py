@@ -1,21 +1,18 @@
 import re
 import cv2
 import numpy as np
-import logging # <-- 1. Add this import
+import logging
 from paddleocr import PaddleOCR
 
-# 2. Add this line to force PaddleOCR to stay quiet
+# Force PaddleOCR to stay quiet
 logging.getLogger("ppocr").setLevel(logging.ERROR)
 
 from src.config import OCR_CONF_PRIMARY, OCR_CONF_FALLBACK, MIN_PLATE_LENGTH, MAX_PLATE_LENGTH, STATE_EXCLUSIONS
 
 class PlateReader:
     def __init__(self):
-        # 3. Remove 'show_log=False' from this line
         self.reader = PaddleOCR(use_angle_cls=False, lang='en')
         
-    # ... [The rest of your class stays exactly the same] ...
-    
     def normalize_plate(self, text):
         return re.sub(r'[^A-Z0-9]', '', text.upper())
 
@@ -29,8 +26,8 @@ class PlateReader:
         return cv2.filter2D(gray, -1, kernel)
 
     def read(self, image_path):
-        # PaddleOCR handles file paths directly just like EasyOCR
-        raw_results = self.reader.ocr(image_path, cls=False)
+        # 1. REMOVED cls=False from this call
+        raw_results = self.reader.ocr(image_path)
         
         def get_main_plate(ocr_output, min_conf):
             # Failsafe if PaddleOCR finds absolutely nothing
@@ -84,6 +81,6 @@ class PlateReader:
         processed_img = self.preprocess(image_path)
         if processed_img is None: return []
         
-        # PaddleOCR natively accepts OpenCV numpy arrays, so we can pass it right in
-        enhanced_results = self.reader.ocr(processed_img, cls=False)
+        # 2. REMOVED cls=False from this call
+        enhanced_results = self.reader.ocr(processed_img)
         return get_main_plate(enhanced_results, min_conf=OCR_CONF_FALLBACK)
