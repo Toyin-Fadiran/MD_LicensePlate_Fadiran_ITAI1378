@@ -26,30 +26,31 @@ class PlateReader:
         return cv2.filter2D(gray, -1, kernel)
 
     def read(self, image_path):
-        # 1. REMOVED cls=False from this call
         raw_results = self.reader.ocr(image_path)
         
-        def get_main_plate(ocr_output, min_conf):
-            # Failsafe if PaddleOCR finds absolutely nothing
+        # 1. Added was_scaled back as an argument
+        def get_main_plate(ocr_output, min_conf, was_scaled=False):
             if not ocr_output or not ocr_output[0]:
                 return []
                 
             valid_reads = []
             
-            # PaddleOCR returns data in results[0] as: [[bbox], ['text', confidence]]
             for line in ocr_output[0]:
-                bbox = line[0]        # [[x1,y1], [x2,y2], [x3,y3], [x4,y4]]
-                text = line[1][0]     # The extracted string
-                conf = line[1][1]     # The confidence score
+                raw_bbox = line[0]        
+                text = line[1][0]     
+                conf = line[1][1]     
                 
                 norm = self.normalize_plate(text)
                 
-                # 1. Length Check: Drops Strings (> 8 chars)
-                # 2. Exclusion Check: Drops State Names
-                # 3. Confidence Check: Ensures decent OCR reads
                 if (MIN_PLATE_LENGTH <= len(norm) <= MAX_PLATE_LENGTH 
                     and norm not in STATE_EXCLUSIONS 
                     and conf >= min_conf):
+                    
+                    # 2. Restored the scaling math!
+                    if was_scaled:
+                        bbox = [[int(x/2), int(y/2)] for x, y in raw_bbox]
+                    else:
+                        bbox = [[int(x), int(y)] for x, y in raw_bbox]
                     
                     y_coords = [point[1] for point in bbox]
                     text_height = max(y_coords) - min(y_coords)
@@ -61,7 +62,6 @@ class PlateReader:
                         "height": text_height
                     })
             
-            # Now sort whatever survived the gauntlet by height
             if valid_reads:
                 valid_reads.sort(key=lambda x: x['height'], reverse=True)
                 return [valid_reads[0]] 
@@ -71,7 +71,8 @@ class PlateReader:
         # -----------------------------------------
         # PASS 1: The Fast Path
         # -----------------------------------------
-        high_conf_plate = get_main_plate(raw_results, min_conf=OCR_CONF_PRIMARY)
+        # 3. Passed was_scaled=False
+        high_conf_plate = get_main_plate(raw_results, min_conf=OCR_CONF_PRIMARY, was_scaled=False)
         if high_conf_plate:
             return high_conf_plate
 
@@ -81,6 +82,7 @@ class PlateReader:
         processed_img = self.preprocess(image_path)
         if processed_img is None: return []
         
-        # 2. REMOVED cls=False from this call
         enhanced_results = self.reader.ocr(processed_img)
-        return get_main_plate(enhanced_results, min_conf=OCR_CONF_FALLBACK)
+        
+        # 4. Passed was_scaled=True
+        return get_main_plate(enhanced_results, min_conf=OCR_CONF_FALLBACK, was_scaled=True)
