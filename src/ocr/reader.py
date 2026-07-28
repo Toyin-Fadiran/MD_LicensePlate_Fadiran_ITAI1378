@@ -3,19 +3,17 @@ import re
 import cv2
 import numpy as np
 
-# Import your externalized configuration variables
-from src.config import OCR_CONF_PRIMARY, OCR_CONF_FALLBACK
+# Import the new exclusion rules
+from src.config import OCR_CONF_PRIMARY, OCR_CONF_FALLBACK, MIN_PLATE_LENGTH, MAX_PLATE_LENGTH, STATE_EXCLUSIONS
 
 class PlateReader:
     def __init__(self):
         self.reader = easyocr.Reader(['en'])
     
     def normalize_plate(self, text):
-        """Normalize license plate text by converting to uppercase and stripping all non-alphanumeric characters."""
         return re.sub(r'[^A-Z0-9]', '', text.upper())
 
     def preprocess(self, image_path):
-        """Upscales and sharpens the image to resolve edge-case characters."""
         img = cv2.imread(image_path)
         if img is None: return None
         
@@ -32,11 +30,14 @@ class PlateReader:
             for bbox, text, conf in ocr_output:
                 norm = self.normalize_plate(text)
                 
-                if len(norm) >= 4 and conf >= min_conf:
-                    # Extract all the Y coordinates from the 4 corners of the bbox
-                    y_coords = [point[1] for point in bbox]
+                # 1. Length Check: Drops Strings (> 8 chars)
+                # 2. Exclusion Check: Drops State Names
+                # 3. Confidence Check: Ensures decent OCR reads
+                if (MIN_PLATE_LENGTH <= len(norm) <= MAX_PLATE_LENGTH 
+                    and norm not in STATE_EXCLUSIONS 
+                    and conf >= min_conf):
                     
-                    # Calculate the pixel height of this specific text
+                    y_coords = [point[1] for point in bbox]
                     text_height = max(y_coords) - min(y_coords)
                     
                     valid_reads.append({
@@ -46,23 +47,19 @@ class PlateReader:
                         "height": text_height
                     })
             
-            # If we found valid text, sort by height (descending) and return the tallest
+            # Now sort whatever survived the gauntlet by height
             if valid_reads:
                 valid_reads.sort(key=lambda x: x['height'], reverse=True)
-                return [valid_reads[0]] # Return as a list of 1
+                return [valid_reads[0]] 
                 
             return []
 
-        # -----------------------------------------
         # PASS 1: The Fast Path
-        # -----------------------------------------
         high_conf_plate = get_main_plate(raw_results, min_conf=OCR_CONF_PRIMARY)
         if high_conf_plate:
             return high_conf_plate
 
-        # -----------------------------------------
         # PASS 2: The Fallback
-        # -----------------------------------------
         processed_img = self.preprocess(image_path)
         if processed_img is None: return []
         
