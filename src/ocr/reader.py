@@ -1,15 +1,20 @@
 import re
 import cv2
 import numpy as np
+import logging # <-- 1. Add this import
 from paddleocr import PaddleOCR
 
-# Import your established exclusion rules
+# 2. Add this line to force PaddleOCR to stay quiet
+logging.getLogger("ppocr").setLevel(logging.ERROR)
+
 from src.config import OCR_CONF_PRIMARY, OCR_CONF_FALLBACK, MIN_PLATE_LENGTH, MAX_PLATE_LENGTH, STATE_EXCLUSIONS
 
 class PlateReader:
     def __init__(self):
-        # Initialize PaddleOCR. 'show_log=False' keeps your terminal clean during loops.
-        self.reader = PaddleOCR(use_angle_cls=False, lang='en', show_log=False)
+        # 3. Remove 'show_log=False' from this line
+        self.reader = PaddleOCR(use_angle_cls=False, lang='en')
+        
+    # ... [The rest of your class stays exactly the same] ...
     
     def normalize_plate(self, text):
         return re.sub(r'[^A-Z0-9]', '', text.upper())
