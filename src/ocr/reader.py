@@ -28,6 +28,9 @@ class PlateReader:
         return enhanced
 
     def read(self, image_path):
+        # Define the absolute pool of allowed characters
+        plate_chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
+        
         def get_main_plate(ocr_output, min_conf, was_scaled=False):
             valid_reads = []
             for bbox, text, conf in ocr_output:
@@ -61,7 +64,10 @@ class PlateReader:
         # -----------------------------------------
         # PASS 1: The Fast Path (Raw Image)
         # -----------------------------------------
-        raw_results = self.reader.readtext(image_path)
+        raw_results = self.reader.readtext(
+            image_path, 
+            allowlist=plate_chars
+        )
         high_conf_plate = get_main_plate(raw_results, min_conf=OCR_CONF_PRIMARY, was_scaled=False)
         
         if high_conf_plate:
@@ -73,5 +79,8 @@ class PlateReader:
         processed_img = self.preprocess(image_path)
         if processed_img is None: return []
         
-        enhanced_results = self.reader.readtext(processed_img)
+        enhanced_results = self.reader.readtext(
+            processed_img,
+            allowlist=plate_chars
+        )
         return get_main_plate(enhanced_results, min_conf=OCR_CONF_FALLBACK, was_scaled=True)
