@@ -34,3 +34,13 @@ MODEL_PATH = Path(
 
 # Database
 DATABASE_PATH = PROJECT_ROOT / "database" / "lpr.db"
+
+# ==========================================
+# OCR SETTINGS
+# ==========================================
+
+# Minimum confidence required for the fast-path raw image (Pass 1)
+OCR_CONF_PRIMARY = 0.60 
+
+# Minimum confidence required for the sharpened fallback image (Pass 2)
+OCR_CONF_FALLBACK = 0.25
