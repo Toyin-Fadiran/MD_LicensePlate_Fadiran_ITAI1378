@@ -10,11 +10,6 @@ RUN_DIR = Path(
 )
 
 
-# Demo ingestion folder
-INCOMING_IMAGE_DIR = Path(
-    "/content/drive/MyDrive/LPR_Inbox/incoming"
-)
-
 
 # Test regression images
 TEST_IMAGE_DIR = PROJECT_ROOT / "data" / "test"
