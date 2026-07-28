@@ -1,0 +1,29 @@
+{
+    "source_image": "test1_twocarssun.jpg",
+    "detections": [
+        {
+            "source_image": "test1_twocarssun.jpg",
+            "crop_image": "test1_twocarssun_plate_1.jpg",
+            "class": "License_Plate",
+            "confidence": 0.7642,
+            "bbox": {
+                "x1": 2554,
+                "y1": 1670,
+                "x2": 2836,
+                "y2": 1843
+            }
+        },
+        {
+            "source_image": "test1_twocarssun.jpg",
+            "crop_image": "test1_twocarssun_plate_2.jpg",
+            "class": "License_Plate",
+            "confidence": 0.4612,
+            "bbox": {
+                "x1": 640,
+                "y1": 1750,
+                "x2": 906,
+                "y2": 1903
+            }
+        }
+    ]
+}

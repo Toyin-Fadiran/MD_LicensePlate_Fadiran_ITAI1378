@@ -1,0 +1,17 @@
+{
+    "source_image": "test2_1carshade.jpg",
+    "detections": [
+        {
+            "source_image": "test2_1carshade.jpg",
+            "crop_image": "test2_1carshade_plate_1.jpg",
+            "class": "License_Plate",
+            "confidence": 0.7212,
+            "bbox": {
+                "x1": 1305,
+                "y1": 2064,
+                "x2": 1676,
+                "y2": 2310
+            }
+        }
+    ]
+}
