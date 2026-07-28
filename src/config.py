@@ -32,8 +32,10 @@ MODEL_PATH = Path(
 )
 
 
+CSV_FILE_PATH = PROJECT_ROOT / "authorized_list.csv"
+
 # Database
-DATABASE_PATH = PROJECT_ROOT / "database" / "lpr.db"
+DATABASE_PATH = PROJECT_ROOT / "db_data" / "lpr.db"
 
 # ==========================================
 # OCR SETTINGS
