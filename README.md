@@ -83,6 +83,7 @@ I designed and deployed an automated, decoupled two-stage computer vision applic
 │     • Clean recognized ASCII plate strings                             │
 │     • Persistent SQL database logs updated (✅ AUTH / 🚨 UNKNOWN)       │
 └────────────────────────────────────────────────────────────────────────┘
+```
 
 ## Resources
 - **Compute:** Google Colab, Kaggle Notebooks, and Heidi Local/Institutional Cluster.
