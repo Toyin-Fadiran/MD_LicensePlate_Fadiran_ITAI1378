@@ -1,0 +1,29 @@
+{
+    "source_image": "PXL_20260728_202238137.MP.jpg",
+    "detections": [
+        {
+            "source_image": "PXL_20260728_202238137.MP.jpg",
+            "crop_image": "PXL_20260728_202238137.MP_plate_1.jpg",
+            "class": "License_Plate",
+            "confidence": 0.5991,
+            "bbox": {
+                "x1": 451,
+                "y1": 1914,
+                "x2": 859,
+                "y2": 2128
+            }
+        },
+        {
+            "source_image": "PXL_20260728_202238137.MP.jpg",
+            "crop_image": "PXL_20260728_202238137.MP_plate_2.jpg",
+            "class": "License_Plate",
+            "confidence": 0.5496,
+            "bbox": {
+                "x1": 3003,
+                "y1": 2051,
+                "x2": 3397,
+                "y2": 2284
+            }
+        }
+    ]
+}

@@ -1,0 +1,65 @@
+{
+    "source_image": "PXL_20260728_201351991.jpg",
+    "detections": [
+        {
+            "source_image": "PXL_20260728_201351991.jpg",
+            "crop_image": "PXL_20260728_201351991_plate_1.jpg",
+            "class": "License_Plate",
+            "confidence": 0.6752,
+            "bbox": {
+                "x1": 3921,
+                "y1": 1955,
+                "x2": 4000,
+                "y2": 2066
+            }
+        },
+        {
+            "source_image": "PXL_20260728_201351991.jpg",
+            "crop_image": "PXL_20260728_201351991_plate_2.jpg",
+            "class": "License_Plate",
+            "confidence": 0.6062,
+            "bbox": {
+                "x1": 2662,
+                "y1": 1758,
+                "x2": 2856,
+                "y2": 1866
+            }
+        },
+        {
+            "source_image": "PXL_20260728_201351991.jpg",
+            "crop_image": "PXL_20260728_201351991_plate_3.jpg",
+            "class": "License_Plate",
+            "confidence": 0.4655,
+            "bbox": {
+                "x1": 1398,
+                "y1": 1763,
+                "x2": 1590,
+                "y2": 1867
+            }
+        },
+        {
+            "source_image": "PXL_20260728_201351991.jpg",
+            "crop_image": "PXL_20260728_201351991_plate_4.jpg",
+            "class": "License_Plate",
+            "confidence": 0.4226,
+            "bbox": {
+                "x1": 1421,
+                "y1": 1917,
+                "x2": 1550,
+                "y2": 1984
+            }
+        },
+        {
+            "source_image": "PXL_20260728_201351991.jpg",
+            "crop_image": "PXL_20260728_201351991_plate_5.jpg",
+            "class": "License_Plate",
+            "confidence": 0.323,
+            "bbox": {
+                "x1": 1408,
+                "y1": 1840,
+                "x2": 1573,
+                "y2": 1994
+            }
+        }
+    ]
+}

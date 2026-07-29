@@ -1,0 +1,17 @@
+{
+    "source_image": "PXL_20260728_202740379.jpg",
+    "detections": [
+        {
+            "source_image": "PXL_20260728_202740379.jpg",
+            "crop_image": "PXL_20260728_202740379_plate_1.jpg",
+            "class": "License_Plate",
+            "confidence": 0.83,
+            "bbox": {
+                "x1": 792,
+                "y1": 1956,
+                "x2": 1960,
+                "y2": 2625
+            }
+        }
+    ]
+}
