@@ -41,6 +41,17 @@ The model was evaluated against a target Mean Average Precision (mAP@0.5) of **�
 | **Precision** | - | 0.9825 | 0.9903 | - |
 | **Recall** | - | 0.9473 | 0.9456 | - |
 
+### ⚡ Secondary Success Metric: Production Inference Latency
+
+The system requires an inference latency of **< 0.2 seconds (200 ms)** per image to ensure real-time processing capabilities without bottlenecking the pipeline. The YOLOv8 spatial detection model comfortably exceeded this requirement during real-world batch processing.
+
+| Execution Environment | Preprocess | Inference (Core) | Postprocess | Total Latency | Target (Inference) | Status |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Colab GPU (Production)** | 5.3 ms | **4.2 ms** | 1.8 ms | 11.3 ms | < 200.0 ms | ✅ **PASSED** |
+
+*Note: An inference time of 4.2 milliseconds equates to 0.0042 seconds, meaning the production model operates ~47x faster than the required real-time baseline.*
+
+
 ## Milestone Plan
 | Phase | Task Description | Target Week | Status |
 | :--- | :--- | :---: | :---: |
