@@ -96,7 +96,7 @@ I designed and deployed an automated, decoupled two-stage computer vision applic
 | **EasyOCR misreads the extracted text** due to low resolution, shadow gradients, or blurring in the cropped bounding boxes. | **High** | Implement a strict OpenCV pre-processing pipeline (**grayscale, cubic upscaling, and adaptive thresholding**) on the cropped image arrays before passing them to the OCR engine to maximize character edge contrast. |
 
 ## Demo Video
-*[Link to project walkthrough video will be added during Final presentation submissions]*
+**[🎥 Watch Project Walkthrough Video](https://drive.google.com/file/d/1zUe_6esOufztxJryx_owQmTozaM32kaZ/view?usp=sharing)**
 
 ## AI Usage Log
 See [docs/AI_usage_log.md](docs/AI_usage_log.md)
