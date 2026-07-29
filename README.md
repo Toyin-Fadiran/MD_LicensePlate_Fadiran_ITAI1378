@@ -56,10 +56,10 @@ The system requires an inference latency of **< 0.2 seconds (200 ms)** per image
 | Phase | Task Description | Target Week | Status |
 | :--- | :--- | :---: | :---: |
 | **Phase 1: Blueprint** | Set up GitHub repository, secure compute environments (Colab/Kaggle/Heidi), and verify access to the Roboflow dataset. | Week 4 | 🟩 Complete |
-| **Phase 2: First Working Demo** | Train a baseline YOLOv11 model on the dataset and write the basic pipeline code to crop detected plates. | Week 6 | 🟨 In Progress |
-| **Phase 3: Make It Yours** | Integrate EasyOCR into the pipeline and add the custom OpenCV pre-processing filters to boost character legibility. | Week 8 | ⬜ Planned |
-| **Phase 4: Improve and Measure** | Benchmark the primary $mAP@0.5$ and secondary inference latency metrics against the target success goals. | Week 10 | ⬜ Planned |
-| **Phase 5: Build** | Test the end-to-end pipeline using out-of-distribution validation images collected directly from real parking structures. | Week 12 | ⬜ Planned |
+| **Phase 2: First Working Demo** | Train a baseline YOLOv11 model on the dataset and write the basic pipeline code to crop detected plates. | Week 6 | � Complete |
+| **Phase 3: Make It Yours** | Integrate EasyOCR into the pipeline and add the custom OpenCV pre-processing filters to boost character legibility. | Week 8 | 🟩 Complete |
+| **Phase 4: Improve and Measure** | Benchmark the primary $mAP@0.5$ and secondary inference latency metrics against the target success goals. | Week 10 | 🟩 Complete |
+| **Phase 5: Build** | Test the end-to-end pipeline using out-of-distribution validation images collected directly from real parking structures. | Week 12 | 🟩 Complete |
 
 ## Resources
 - **Compute:** Google Colab, Kaggle Notebooks, and Heidi Local/Institutional Cluster.
@@ -80,7 +80,7 @@ See [docs/AI_usage_log.md](docs/AI_usage_log.md)
 ## Current Status
 - [x] Repository created
 - [x] Proposal submitted
-- [ ] First working demo
-- [ ] System works on our data
-- [ ] Metrics measured
-- [ ] Final submitted
+- [x] First working demo
+- [x] System works on our data
+- [x] Metrics measured
+- [x] Final submitted
