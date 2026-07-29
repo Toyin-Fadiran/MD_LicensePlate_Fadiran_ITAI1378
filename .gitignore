@@ -35,7 +35,6 @@ env/
 
 # YOLO outputs
 runs/
-results/
 wandb/
 
 
