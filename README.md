@@ -40,6 +40,50 @@ The application takes raw images of vehicles as input and automatically localize
 | **Phase 4: Improve and Measure** | Benchmark the primary $mAP@0.5$ and secondary inference latency metrics against the target success goals. | Week 10 | 🟩 Complete |
 | **Phase 5: Build** | Test the end-to-end pipeline using out-of-distribution validation images collected directly from real parking structures. | Week 12 | 🟩 Complete |
 
+## ActualFinalOutput: Production Pipeline Architecture
+
+I designed and deployed an automated, decoupled two-stage computer vision application that bridges high-speed spatial localization with deep-learning character extraction and relational SQL database logging.
+
+### 🏗️ Architectural Workflow Diagram
+
+```text
+                  🚗 AUTOMATED LPR PRODUCTION PIPELINE 🚗
+
+┌────────────────────────────────────────────────────────────────────────┐
+│  STAGE 1: 01_detection.ipynb  (Spatial Localization)                   │
+├────────────────────────────────────────────────────────────────────────┤
+│  📥 Input:                                                             │
+│     • Google Drive / LPR_Inbox/incoming (Raw Parking Lot Images)       │
+│                                                                        │
+│  ⚙️ Process:                                                           │
+│     • Load fine-tuned weights (best.pt - YOLO11n / YOLOv8)             │
+│     • Detect vehicle license plates with bounding-box localization     │
+│     • Save dynamically cropped plate images (_plate_i.jpg)             │
+│     • Generate spatial coordinate metadata (.json)                     │
+│                                                                        │
+│  📤 Output:                                                            │
+│     • Cropped plate images (.jpg)                                      │
+│     • Detection metadata files (.json)                                 │
+└───────────────────────────────────┬────────────────────────────────────┘
+                                    │
+                                    ▼  [ Hand-Off: Cropped Plate Arrays ]
+┌────────────────────────────────────────────────────────────────────────┐
+│  STAGE 2: 02_ocr_database.ipynb  (Recognition & Access Control)        │
+├────────────────────────────────────────────────────────────────────────┤
+│  📥 Input:                                                             │
+│     • Cropped license plate images (.jpg)                              │
+│                                                                        │
+│  ⚙️ Process:                                                           │
+│     • Extract ASCII text via PaddleOCR-GPU (Deep Learning NN)          │
+│     • Clean & Sanitize OCR text (Strip 50 US State names & symbols)    │
+│     • Query local SQLite relational database (lpr.db)                  │
+│     • Insert vehicle log entry if new / evaluate access status         │
+│                                                                        │
+│  📤 Output:                                                            │
+│     • Clean recognized ASCII plate strings                             │
+│     • Persistent SQL database logs updated (✅ AUTH / 🚨 UNKNOWN)       │
+└────────────────────────────────────────────────────────────────────────┘
+
 ## Resources
 - **Compute:** Google Colab, Kaggle Notebooks, and Heidi Local/Institutional Cluster.
 - **Cost:** $0 (Exclusively utilizing free GPU computing tiers and open-source models; optional $10 Colab Pro expansion if longer training sessions are required).
