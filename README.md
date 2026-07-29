@@ -30,6 +30,17 @@ The application takes raw images of vehicles as input and automatically localize
 - **🎯 Primary:** Mean Average Precision at a 0.5 Intersection over Union threshold ($mAP@0.5$) $\ge 90\%$. This measures how accurately the model localizes plates and how tightly the bounding boxes align with ground-truth coordinates.
 - **⚡ Secondary:** Inference Latency $< 0.2$ seconds per image. This guarantees the model processes incoming frames quickly enough to prevent delay in real-world deployment scenarios.
 
+### 🎯 Primary Success Metric: Model Performance (mAP@0.5)
+
+The model was evaluated against a target Mean Average Precision (mAP@0.5) of **≥ 0.90**. The results below demonstrate that the YOLOv8 model exceeded this baseline across both the validation and unseen test data splits.
+
+| Evaluation Metric | Target Threshold | Validation Split | Test Split | Status |
+| :--- | :--- | :--- | :--- | :--- |
+| **mAP@0.50** | ≥ 0.9000 | 0.9686 | 0.9695 | ✅ **PASSED** |
+| **mAP@0.50-0.95** | - | 0.6913 | 0.6912 | - |
+| **Precision** | - | 0.9825 | 0.9903 | - |
+| **Recall** | - | 0.9473 | 0.9456 | - |
+
 ## Milestone Plan
 | Phase | Task Description | Target Week | Status |
 | :--- | :--- | :---: | :---: |
