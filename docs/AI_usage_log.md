@@ -50,7 +50,7 @@
 
 ---
 
-### Entry 7: Alphanumeric State-Name Sanitization for OCR
+### Entry 5: Alphanumeric State-Name Sanitization for OCR
 * **Date & Tool Used:** 2026-07-26 | Gemini (LLM)  
 * **Problem / What I Asked:**  
   * Even after upgrading to PaddleOCR-GPU, raw OCR text extraction from cropped plates frequently included printed US state names (e.g., `"TEXAS"`, `"CALIFORNIA"`, `"ALABAMA"`) along with the actual license plate number, which caused relational database queries to fail.  
